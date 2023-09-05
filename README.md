@@ -45,6 +45,9 @@ uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 Access the app at http://localhost:8000.
 
 Making Predictions: Send POST requests to /predict with JSON data (example data)
+- Some of the features are categorical, so they need to be encoded before making predictions. 
+&nbsp;(such as amenities, time of day, day of week, month of year, building id, etc.)
+- Would be made easier with further development of the app and a front-end interface.
 ```bash
 {
   "AMENITIES": 119.0,
