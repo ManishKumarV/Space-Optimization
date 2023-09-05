@@ -57,6 +57,8 @@ Making Predictions: Send POST requests to /predict with JSON data (example data)
 }
 ```
 
+## Interpreting the prediction
+- Each prediction corresponds to a count, and each count represents a time duration of 30 minutes.
 
 
 
