@@ -1,0 +1,10 @@
+FastAPI
+pydantic
+requests
+numpy
+pandas
+seaborn
+matplotlib
+folium
+geopy
+scikit-learn
