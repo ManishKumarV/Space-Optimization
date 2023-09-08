@@ -1,59 +1,80 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Form
+from fastapi.templating import Jinja2Templates
 import pickle
-from pydantic import BaseModel
+import pandas as pd
 
 
-# Create a FastAPI web app
+# Create the FastAPI app
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 # Load the pickled Random Forest model
 with open('random_forest_model.pkl', 'rb') as model_file:
     rf_model = pickle.load(model_file)
 
-# Define a route for a simple "Hello, World!" message
+# Test case for prediction
+test_features = [[230, 16, 1, 7, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+
+
+# Define a route to render the HTML form
 @app.get("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+async def read_form(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
-# Create a Pydantic model for input data validation
-class PredictionInput(BaseModel):
-    AMENITIES: float
-    time_of_day: float
-    day_of_week: float
-    month_of_year: float
-    CAPACITY: float
-    BUILDINGID: float
-    Total_Building_Meetings: float
 
-# Define the prediction route
-@app.post('/predict')
-def predict(input_data: PredictionInput):
+# Define a route to handle preprocessing and prediction
+@app.post("/predict")
+async def predict(
+    request: Request,
+    AMENITIES: int = Form(...),
+    BUILDINGID: str = Form(...),
+    CAPACITY: int = Form(...),
+    time_of_day: str = Form(...),
+    day_of_week: int = Form(...),
+    month_of_year: int = Form(...),
+
+):
     try:
-        # Extract feature values from the input_data object
-        features = [
-            input_data.AMENITIES,
-            input_data.time_of_day,
-            input_data.day_of_week,
-            input_data.month_of_year,
-            input_data.CAPACITY,
-            input_data.BUILDINGID,
-            input_data.Total_Building_Meetings
-        ]
+        # Prepare the features for prediction
+        features = {'AMENITIES_en': 230,
+                    'time_of_day': int(time_of_day[:2]),
+                    'day_of_week': day_of_week,
+                    'month_of_year': month_of_year,
+                    'CAPACITY': CAPACITY,
+                    'BUILDINGID_B029': 0,
+                    'BUILDINGID_B030': 0,
+                    'BUILDINGID_B031': 0,
+                    'BUILDINGID_B033': 0,
+                    'BUILDINGID_B039': 0,
+                    'BUILDINGID_B042': 0,
+                    'BUILDINGID_B044': 1,
+                    'BUILDINGID_B047': 0,
+                    'BUILDINGID_B060': 0,
+                    'BUILDINGID_B072': 0,
+                    'BUILDINGID_Other': 0
+                    }
+
+        features[BUILDINGID] = 1
 
         # Perform predictions using the loaded model
-        prediction = int(rf_model.predict([features])[0])  # Convert prediction to int
+        if CAPACITY == -1:
+            prediction = str(rf_model.predict(test_features)[0])
+        else:
+            prediction = str(rf_model.predict([list(features.values())])[0])
 
-        # Create a JSON response
-        response = {
-            'prediction': prediction
-        }
+        # Convert the prediction to a meaningful output
+        if prediction == 'z':
+            prediction = 'Under 2 hours'
+        elif prediction == 'A':
+            prediction = '2-4 hours'
+        else:
+            prediction = 'Over 4 hours'
 
-        return response
+        # Render the prediction along with the input form
+        return templates.TemplateResponse(
+            "index.html",
+            {"request": request, "prediction": prediction},
+        )
 
     except Exception as e:
         return {'error': str(e)}
-
-# Run the FastAPI app using uvicorn
-if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(app, host='127.0.0.1', port=8000)
