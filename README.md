@@ -29,10 +29,24 @@ pip install -r requirements.txt
 This repository contains code for deploying a machine-learning model using FastAPI. The model, a Random Forest Classifier, predicts meeting room durations with an accuracy of 88% based on various features.
 
 ### Project Structure
+    .
+    ├── notebooks/
+        ├── Data Analytics - Desk Booking.ipynb         # Data Analysis code for Desk Booking Logs.
+        ├── Data Analytics - Room Booking.ipynb         # Data Analysis code for Room Booking Logs.
+        ├── Machine Learning.ipynb                      # Machine Learning code for Demand Prediction.
+    ├── data/                                           # Data folder containing the dataset used for training and testing. (not included)
+    ├── templates/                                      # Image Templates for UI rendering.
+    ├── outputs/
+        ├── address_map.html                            # HTML page containing a mapping of popular buildings.
+        ├── images                                      # Output images to load.
+    ├── random_forest_model.pkl                         # Trained Random Forest model (pickle file). (included in zip format)                               
+    ├── Intro Presentation.pdf
+    ├── Modelling Approach.pdf                                 
+    ├── Final Report.pdf
+    ├── Requirements.txt
+    ├── README.md  
+    └── main.py                                         # FastAPI application code.
 
-- `app.py`: FastAPI application code.
-- `random_forest_model.pkl`: Trained Random Forest model (pickle file).
-- `data/`: Data folder containing the dataset used for training and testing.
 
 Running the FastAPI App:
 
