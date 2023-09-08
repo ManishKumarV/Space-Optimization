@@ -62,5 +62,5 @@ Making Predictions: Use the UI (or) Send POST requests to /predict with JSON dat
 
 ## Interpreting the prediction
 
-- Each prediction categorises the given test scenario into 3 groups based onbooking duration: a quick booking, 2-4 hour duration or 4+ hours, etc.
+- Each prediction categorizes the given test scenario into 3 groups based on booking duration: a quick booking, 2-4 hour duration or 4+ hours, etc.
 - Additionally each prediction corresponds to a count, and each count represents a time duration of 30 minutes.
