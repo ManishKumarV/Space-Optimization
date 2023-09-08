@@ -8,18 +8,15 @@ This repository contains code for preliminary data analysis and insights derived
 
 Make sure you have the following Python packages installed in your environment:
 
-- `os`
-- `glob`
-- `re`
-- `math`
 - `numpy`
 - `pandas`
 - `seaborn`
 - `matplotlib`
+- `scikit-learn`
 - `folium`
 - `geopy`
-- `sklearn`
-- `warnings`
+- `FastAPI`
+- `pydantic`
 
 You can install these packages using `pip`:
 
