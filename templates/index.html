@@ -1,0 +1,170 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXAPP Space Optimization Challenge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/Users/mani/Desktop/cxapp/Space-Optimization/templates/background.jpeg'); /* Replace 'path-to-your-image.jpg' with the actual path to your image */
+            background-size: cover;
+            background-blur: 30%; /* Apply a 30% blur effect to the background image */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>CXAPP Space Optimisation Challenge </h1>
+        <h2><i>Demand Prediction:</i></h2>
+        <br>
+        <form method="post" action="/predict">
+            <div class="form-group">
+                <label for="AMENITIES">Building ID:</label>
+                <select name="AMENITIES" class="form-control" required>
+                    <option value="8820">Amenity Group 8820</option>
+                    <option value="5102">Amenity Group 5102</option>
+                    <option value="4423">Amenity Group 4423</option>
+                    <option value="3398">Amenity Group 3398</option>
+                    <option value="3044">Amenity Group 3044</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="BUILDINGID">Building ID:</label>
+                <select name="BUILDINGID" class="form-control" required>
+                    <option value="BUILDINGID_B029">Building B029</option>
+                    <option value="BUILDINGID_B030">Building B030</option>
+                    <option value="BUILDINGID_B031">Building B031</option>
+                    <option value="BUILDINGID_B033">Building B033</option>
+                    <option value="BUILDINGID_B039">Building B039</option>
+                    <option value="BUILDINGID_B042">Building B042</option>
+                    <option value="BUILDINGID_B044">Building B044</option>
+                    <option value="BUILDINGID_B047">Building B047</option>
+                    <option value="BUILDINGID_B060">Building B060</option>
+                    <option value="BUILDINGID_B072">Building B072</option>
+                    <option value="BUILDINGID_Other">All Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="month_of_year">Month of Year:</label>
+                <select name="month_of_year" class="form-control" required>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="day_of_week">Day of Week:</label>
+                <select name="day_of_week" class="form-control" required>
+                    <option value="0">Monday</option>
+                    <option value="1">Tuesday</option>
+                    <option value="2">Wednesday</option>
+                    <option value="3">Thursday</option>
+                    <option value="4">Friday</option>
+                    <option value="5">Saturday</option>
+                    <option value="6">Sunday</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="time_of_day">Time of Day:</label>
+                <select name="time_of_day" class="form-control">
+                    <option value="">Select a time</option>
+                    <option value="00:00">00:00</option>
+                    <option value="00:30">00:30</option>
+                    <option value="01:00">01:00</option>
+                    <option value="01:30">01:30</option>
+                    <option value="02:00">02:00</option>
+                    <option value="02:30">02:30</option>
+                    <option value="03:00">03:00</option>
+                    <option value="03:30">03:30</option>
+                    <option value="04:00">04:00</option>
+                    <option value="04:30">04:30</option>
+                    <option value="05:00">05:00</option>
+                    <option value="05:30">05:30</option>
+                    <option value="06:00">06:00</option>
+                    <option value="06:30">06:30</option>
+                    <option value="07:00">07:00</option>
+                    <option value="07:30">07:30</option>
+                    <option value="08:00">08:00</option>
+                    <option value="08:30">08:30</option>
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                    <option value="23:00">23:00</option>
+                    <option value="23:30">23:30</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <small class="form-text text-muted" id="time_of_day_numeric_or">OR</small>
+                <input type="str" name="time_of_day_numeric" id="time_of_day_numeric" class="form-control" placeholder="Enter time (HH:MM)">
+            </div>
+            <div class="form-group">
+                <label for="CAPACITY">Desired Capacity (Numerical):</label>
+                <input type="number" name="CAPACITY" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        
+        <!-- Display the prediction with Bootstrap styling -->
+        {% if prediction is defined %}
+        <div class="alert alert-success mt-4">
+            <h2 class="mb-2">Prediction:</h2>
+            <p class="mb-0">The predicted duration value is: {{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // JavaScript to toggle visibility of the numerical input field
+        const timeOfDayDropdown = document.querySelector('select[name="time_of_day"]');
+        const timeOfDayNumericInput = document.getElementById('time_of_day_numeric');
+
+        timeOfDayDropdown.addEventListener('change', () => {
+            if (timeOfDayDropdown.value === '') {
+                timeOfDayNumericInput.style.display = 'block';
+                timeOfDayNumericInput.required = true;
+            } else {
+                timeOfDayNumericInput.style.display = 'none';
+                time_of_day_numeric_or.style.display = 'none';
+                timeOfDayNumericInput.required = false;
+            }
+        });
+    </script>
+</body>
+</html>
