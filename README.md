@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ## FastAPI Model Deployment
 
-This repository contains code for deploying a machine-learning model using FastAPI. The model, a Random Forest Classifier, predicts meeting room durations based on various features.
+This repository contains code for deploying a machine-learning model using FastAPI. The model, a Random Forest Classifier, predicts meeting room durations with an accuracy of 88% based on various features.
 
 ### Project Structure
 
@@ -40,7 +40,7 @@ This repository contains code for deploying a machine-learning model using FastA
 Running the FastAPI App:
 
 ```bash
-uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --reload
 ```
 
 Access the app at http://localhost:8000.
@@ -51,7 +51,8 @@ Making Predictions: Use the UI (or) Send POST requests to /predict with JSON dat
   &nbsp;(such as amenities, time of day, day of week, month of year, building id, etc.)
 - Would be made easier with further development of the app and a front-end interface.
 
-0{
+```bash
+{
   "AMENITIES": 5192,
   "time_of_day": 16,
   "day_of_week": 3,
@@ -59,6 +60,7 @@ Making Predictions: Use the UI (or) Send POST requests to /predict with JSON dat
   "CAPACITY": 6,
   "BUILDINGID": B029,
 }
+```
 
 ## Interpreting the prediction
 
