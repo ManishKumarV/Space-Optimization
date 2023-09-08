@@ -38,31 +38,29 @@ This repository contains code for deploying a machine-learning model using FastA
 - `data/`: Data folder containing the dataset used for training and testing.
 
 Running the FastAPI App:
+
 ```bash
 uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Access the app at http://localhost:8000.
 
-Making Predictions: Send POST requests to /predict with JSON data (example data)
-- Some of the features are categorical, so they need to be encoded before making predictions. 
-&nbsp;(such as amenities, time of day, day of week, month of year, building id, etc.)
+Making Predictions: Use the UI (or) Send POST requests to /predict with JSON data (example data)
+
+- Some of the features are categorical, so they need to be encoded before making predictions.
+  &nbsp;(such as amenities, time of day, day of week, month of year, building id, etc.)
 - Would be made easier with further development of the app and a front-end interface.
-```bash
-{
-  "AMENITIES": 119.0,
-  "time_of_day": 16.0,
-  "day_of_week": 3.0,
-  "month_of_year": 5.0,
-  "CAPACITY": 6.0,
-  "BUILDINGID": 23.0,
-  "Total_Building_Meetings": 9933.0
+
+0{
+  "AMENITIES": 5192,
+  "time_of_day": 16,
+  "day_of_week": 3,
+  "month_of_year": 5,
+  "CAPACITY": 6,
+  "BUILDINGID": B029,
 }
-```
 
 ## Interpreting the prediction
-- Each prediction corresponds to a count, and each count represents a time duration of 30 minutes.
 
-
-
-
+- Each prediction categorises the given test scenario into 3 groups based onbooking duration: a quick booking, 2-4 hour duration or 4+ hours, etc.
+- Additionally each prediction corresponds to a count, and each count represents a time duration of 30 minutes.
